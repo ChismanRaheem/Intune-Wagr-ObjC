@@ -107,11 +107,11 @@
             //confirm by displaying in console
             NSLog(@"Sign in for %@ was successful", result.account.username);
             NSLog(@"Confirm %@ identifier", accountIdentifer);
-            
+            NSLog(@"Print %@ TenantProfile", result.tenantProfile.identifier);
         
             // This will initiate the register and enroll precess for MAM.
             // Link: https://docs.microsoft.com/mem/intune/developer/app-sdk-ios#apps-that-already-use-adal-or-msal
-            [[IntuneMAMEnrollmentManager instance] registerAndEnrollAccountId:accountIdentifer];
+            [[IntuneMAMEnrollmentManager instance] registerAndEnrollAccountId:result.tenantProfile.identifier];
         }
         // If CA is active, MSAL will respond back with this error.
         else if (error.code == MSALErrorServerProtectionPoliciesRequired) {
