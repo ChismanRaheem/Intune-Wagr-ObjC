@@ -17,7 +17,7 @@ This is an iOS app that is built with Objective-C. This app gives an example on 
 * MAM - version 20.2.2
 
 ## Setup
-> Note: Don't forget to Set api permission for Microsoft Mobile Application Management ref [More Info](https://learn.microsoft.com/en-us/mem/intune/developer/app-sdk-get-started#give-your-app-access-to-the-intune-mobile-app-management-service)
+> Note: Don't forget to Set api permission for Microsoft Mobile Application Management ref [More Info](https://learn.microsoft.com/mem/intune/developer/app-sdk-get-started#give-your-app-access-to-the-intune-mobile-app-management-service)
 
 To run this app:s
 
