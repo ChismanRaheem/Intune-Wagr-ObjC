@@ -12,8 +12,8 @@
 This is an iOS app that is built with Objective-C. This app gives an example on how to implement MAM and MSAL in your app.
 
 ## Technologies
-* MSAL - version 1.1.19
-* MAM - version 14.5.0
+* MSAL - version 1.6.3
+* MAM - version 20.2.2
 
 ## Setup
 To run this app:s
