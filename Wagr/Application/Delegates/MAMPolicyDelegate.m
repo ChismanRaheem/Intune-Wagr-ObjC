@@ -2,7 +2,7 @@
 //  MAMPolicyDelegate.m
 //  Wagr
 //
-//  Copyright (c) 2020 Microsoft. All rights reserved.
+//  Copyright (c) 2025 Microsoft. All rights reserved.
 //
 
 #import "CalendarData.h"

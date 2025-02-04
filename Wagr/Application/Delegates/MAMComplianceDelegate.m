@@ -2,7 +2,7 @@
 //  MAMComplianceDelegate.m
 //  Wagr
 //
-//  Copyright (c) 2021 Microsoft. All rights reserved.
+//  Copyright (c) 2025 Microsoft. All rights reserved.
 //
 
 #import "MAMComplianceDelegate.h"
@@ -59,4 +59,8 @@
         }
     }];
 }
+- (void)accountId:(NSString * _Nonnull)accountId hasComplianceStatus:(IntuneMAMComplianceStatus)status withErrorMessage:(NSString * _Nonnull)errMsg andErrorTitle:(NSString * _Nonnull)errTitle { 
+    
+}
+
 @end

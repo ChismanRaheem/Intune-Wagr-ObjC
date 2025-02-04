@@ -2,7 +2,7 @@
 //  MAMEnrollmentDelegate.m
 //  Wagr
 //
-//  Copyright © 2021 Microsoft. All rights reserved.
+//  Copyright © 2025 Microsoft. All rights reserved.
 //
 
 #import "MAMEnrollmentDelegate.h"

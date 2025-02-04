@@ -2,7 +2,7 @@
 //  LoginViewController.m
 //  Wagr
 //
-//  Copyright (c) 2021 Microsoft. All rights reserved.
+//  Copyright (c) 2025 Microsoft. All rights reserved.
 //
 
 #import "LoginViewController.h"
@@ -18,6 +18,8 @@
 #import <MSAL/MSALPublicClientApplication.h>
 #import <MSAL/MSALResult.h>
 #import <MSAL/MSALWebviewParameters.h>
+#import <MSAL/MSALTenantProfile.h>
+#import <IntuneMAMSwift/IntuneMAMDiagnosticConsole.h>
 
 @implementation LoginViewController
 
@@ -25,6 +27,12 @@
 - (IBAction)logInBtn:(id)sender {
     // Call the method to log into MSAL and MAM.
     [self MSALandMAMLogin];
+}
+- (IBAction)getLogs:(id)sender {
+    
+    // In your implementation file, create an instance of IntuneMAMDiagnosticConsole
+    IntuneMAMDiagnosticConsole *diagnosticConsole = [IntuneMAMDiagnosticConsole new];
+    [IntuneMAMDiagnosticConsole displayDiagnosticConsole];
 }
 
 #pragma mark - MSAL & MAM Login
@@ -39,7 +47,7 @@
      After doing all the setup for MSAL, it will then call MAM in the completion block.
 
      Below is a link that talks about setting up MSAL for login.
-
+ƒ∂
      For this example, we're using a single identity.
 
      We don't save the accessToken, but we do save the identifier as that would be needed for other functionality like signing out.
@@ -93,11 +101,17 @@
     MSALCompletionBlock wagrMSALCompletionBlock = ^(MSALResult *result, NSError *error) {
         if (!error)
         {
+            //create variable to hold objectId
+            NSString *accountIdentifer =[[result.account valueForKey:@"_homeAccountId"] valueForKey:@"_objectId"]?: @"";
+            
+            //confirm by displaying in console
             NSLog(@"Sign in for %@ was successful", result.account.username);
-
+            NSLog(@"Confirm %@ identifier", accountIdentifer);
+            
+        
             // This will initiate the register and enroll precess for MAM.
             // Link: https://docs.microsoft.com/mem/intune/developer/app-sdk-ios#apps-that-already-use-adal-or-msal
-            [[IntuneMAMEnrollmentManager instance] registerAndEnrollAccount:result.account.username];
+            [[IntuneMAMEnrollmentManager instance] registerAndEnrollAccountId:accountIdentifer];
         }
         // If CA is active, MSAL will respond back with this error.
         else if (error.code == MSALErrorServerProtectionPoliciesRequired) {
@@ -108,7 +122,7 @@
 
             // MSAL stores the User ID in the userInfo dictionary under MSALDisplayableUserIdKey.
             // Access that in order to call the compliance manager with the correct UserId credentials as the identity.
-            [[IntuneMAMComplianceManager instance] remediateComplianceForIdentity:error.userInfo[MSALDisplayableUserIdKey] silent:NO];
+            [[IntuneMAMComplianceManager instance] remediateComplianceForAccountId:error.userInfo[MSALDisplayableUserIdKey] silent:NO];
         }
         // This error happens when the given Client ID wasn't authorized.
         // This could happen if you didn't properly set your Client ID in the AppDelegate.
