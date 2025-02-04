@@ -20,7 +20,7 @@ To run this app:s
 
 1. Register Wagr in your Azure portal
 2. Open Wagr.xcworkspace
-3. Open the AppDelegate and find 'IntuneMAMSettings' then change the ADALClientId, ADALRedirectUri, and ADALAuthority to your values
+3. Open the AppDelegate then find and change the ADALClientId, ADALRedirectUri, and ADALAuthority to your values
 4. Build the project to your device/simulator
 5. Run the app!
 
